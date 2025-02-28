@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <title>Landing Page</title>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,8 +14,13 @@
     <p>Computer Networks Project - Muhammed Abdulbasit</p>
   </main>
 
-  <footer>
     <p>Muhammed Abdulbasit</p>
-  </footer>
+
+  <form action="/api/verifyRecaptcha" method="POST">
+    <!-- Your form fields -->
+    <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
+    <button type="submit">Submit</button>
+  </form>
+
 </body>
 </html>
