@@ -17,8 +17,14 @@
     <p>Muhammed Abdulbasit</p>
 
   <form action="/api/verifyRecaptcha" method="POST">
-    <!-- Your form fields -->
-    <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
+    <form action="/api/newsletterSignup" method="POST">
+      <label for="email">Enter your email to stay updated:</label>
+      <input type="email" id="email" name="email" placeholder="Email address" required>
+      
+      <div class="g-recaptcha" data-sitekey="6LcwVNsqAAAAAGG3dGkCUJrn2eoYL80G3VI2khim"></div>
+      <button type="submit">Subscribe</button>
+    </form>    
+    <div class="g-recaptcha" data-sitekey="6LcwVNsqAAAAAGG3dGkCUJrn2eoYL80G3VI2khim"></div>
     <button type="submit">Submit</button>
   </form>
 
