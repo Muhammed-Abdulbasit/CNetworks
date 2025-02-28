@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YMQ24CP123"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-YMQ24CP123');
+  </script>
+
   <title>Landing Page</title>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <link rel="stylesheet" href="styles.css">
+  <script>
+    // Fetch CSRF token on page load
+    window.onload = function() {
+      fetch('/api/verifyRecaptcha').then(response => response.json()).then(data => {
+        document.getElementById('csrfToken').value = data.csrfToken;
+      });
+    };
+  </script>
 </head>
+
 <body>
   <header>
     <h1>Landing Page</h1>
@@ -14,18 +33,13 @@
     <p>Computer Networks Project - Muhammed Abdulbasit</p>
   </main>
 
-    <p>Muhammed Abdulbasit</p>
-
   <form action="/api/verifyRecaptcha" method="POST">
-    <form action="/api/newsletterSignup" method="POST">
-      <label for="email">Enter your email to stay updated:</label>
-      <input type="email" id="email" name="email" placeholder="Email address" required>
-      
-      <div class="g-recaptcha" data-sitekey="6LcwVNsqAAAAAGG3dGkCUJrn2eoYL80G3VI2khim"></div>
-      <button type="submit">Subscribe</button>
-    </form>    
+    <input type="hidden" id="csrfToken" name="csrfToken" value="">
+    <label for="email">Enter your email to stay updated:</label>
+    <input type="email" id="email" name="email" placeholder="Email address" required>
+    
     <div class="g-recaptcha" data-sitekey="6LcwVNsqAAAAAGG3dGkCUJrn2eoYL80G3VI2khim"></div>
-    <button type="submit">Submit</button>
+    <button type="submit">Subscribe</button>
   </form>
 
 </body>
