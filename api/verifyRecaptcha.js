@@ -10,8 +10,7 @@ module.exports = async (req, res) => {
     // Generate CSRF token and set it as a cookie
     const csrfToken = generateCsrfToken();
     res.setHeader('Set-Cookie', `csrfToken=${csrfToken}; HttpOnly; Secure; Path=/;`);
-    // Optionally return a form or just the token if you're managing the form client-side
-    res.status(200).send({ csrfToken }); // Just send token for client-side integration
+    res.status(200).send({ csrfToken });
   } else if (req.method === 'POST') {
     // Verify CSRF token
     const csrfToken = req.cookies.csrfToken;
@@ -19,9 +18,8 @@ module.exports = async (req, res) => {
       return res.status(403).send({ message: 'CSRF token mismatch.' });
     }
 
-    // Continue with reCAPTCHA verification
     const response = req.body['g-recaptcha-response'];
-    const secret = 'RECAPTCHA_SECRET_KEY'; // Replace with your actual secret key
+    const secret = 'RECAPTCHA_SECRET_KEY';
     const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${response}`;
 
     try {
